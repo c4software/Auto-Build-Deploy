@@ -45,10 +45,11 @@ For example, with curl you can use:
 curl -X POST http://localhost:8888/<RANDOM_PATH_FOR_WEBHOOK>
 ```
 
-## Operation
+## Deployment example
 
-The deployment process consists of pulling the repository, building a Docker image, and redeploying the application.  
-Example Dockerfile:
+The deployment process consists of pulling the repository, building a Docker image, and redeploying the application.
+
+To do that, the target repo must have a Dockerfile that builds the application. Here is an example of a Dockerfile:
 
 ```Dockerfile
 # Build stage
@@ -67,9 +68,12 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
+This Dockerfile is an example from another repo of mine ([see here](https://github.com/c4software/bts-sio)).
+
 ## Logs & Deployment
 
 Deployment logs can be accessed using the command:
+
 ```bash
 docker-compose logs
 ```
