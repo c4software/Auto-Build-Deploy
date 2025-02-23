@@ -1,7 +1,6 @@
 # Auto Build Deploy
 
-Ce projet simplifie l'automatisation du déploiement d'une application via un webhook.  
-Profitez d'un processus de déploiement rapide et efficace.
+Ce projet simplifie l'automatisation du déploiement d'une application via un webhook.
 
 ## Fonctionnalités
 
