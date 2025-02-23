@@ -1,46 +1,46 @@
 # Auto Build Deploy
 
-Ce projet simplifie l'automatisation du déploiement d'une application via un webhook.
+This project simplifies the automation of deploying an application via a webhook.
 
-## Fonctionnalités
+## Features
 
-- Déclenchement automatisé des déploiements via un webhook
-- Mise à jour automatique du dépôt
-- Construction d'images Docker à la demande
-- Redéploiement sans interruption (presque instantané, la nouvelle image est renommée au dernier moment)
+- Automated deployment triggering via a webhook
+- Automatic repository update
+- Docker image build on demand
+- Nearly instantaneous redeployment (the new image is renamed at the last moment)
 
-## Prérequis
+## Prerequisites
 
 - Docker
 - Docker Compose
 
 ## Installation & Configuration
 
-1. Clonez le dépôt :
+1. Clone the repository:
    ```bash
    git clone https://github.com/c4software/Auto-Build-Deploy.git
    ```
-2. Configurez les variables d'environnement dans `docker-compose.yml` :
-   - Modifiez `REPO_URL` pour pointer vers votre dépôt.
-   - Définissez `RANDOM_PATH_FOR_WEBHOOK` pour personnaliser le chemin du webhook.
-3. Démarrez le service :
+2. Configure the environment variables in `docker-compose.yml`:
+   - Modify `REPO_URL` to point to your repository.
+   - Set `RANDOM_PATH_FOR_WEBHOOK` to customize the webhook path.
+3. Start the service:
    ```bash
    docker-compose up -d
    ```
 
-## Utilisation
+## Usage
 
-Le serveur écoute sur le port 8888.  
-Pour déclencher le déploiement, effectuez une requête POST vers :
+The server listens on port 8888.  
+To trigger deployment, send a POST request to:
 ```
 http://localhost:8888/<RANDOM_PATH_FOR_WEBHOOK>
 ```
-(Remplacez `<RANDOM_PATH_FOR_WEBHOOK>` par la valeur définie.)
+(Replace `<RANDOM_PATH_FOR_WEBHOOK>` with the configured value.)
 
-## Fonctionnement
+## Operation
 
-Le déploiement consiste à récupérer le dépôt, construire une image Docker, puis redéployer l'application.  
-Exemple de Dockerfile :
+The deployment process consists of pulling the repository, building a Docker image, and redeploying the application.  
+Example Dockerfile:
 
 ```Dockerfile
 # Build stage
@@ -59,17 +59,17 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
-## Logs & Déploiement
+## Logs & Deployment
 
-Les journaux du déploiement sont accessibles via la commande :
+Deployment logs can be accessed using the command:
 ```bash
 docker-compose logs
 ```
 
-## Contribuer
+## Contributing
 
-Les contributions sont les bienvenues !  
+Contributions are welcome!
 
 ## License
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
