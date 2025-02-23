@@ -25,7 +25,7 @@ This project simplifies the automation of deploying an application via a webhook
    - Set `RANDOM_PATH_FOR_WEBHOOK` to customize the webhook path.
 3. Start the service:
    ```bash
-   docker-compose up -d
+   docker compose up
    ```
 
 ## Usage
@@ -36,6 +36,12 @@ To trigger deployment, send a POST request to:
 http://localhost:8888/<RANDOM_PATH_FOR_WEBHOOK>
 ```
 (Replace `<RANDOM_PATH_FOR_WEBHOOK>` with the configured value.)
+
+For example, with curl you can use:
+
+```bash
+curl -X POST http://localhost:8888/<RANDOM_PATH_FOR_WEBHOOK>
+```
 
 ## Operation
 
