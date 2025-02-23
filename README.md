@@ -18,7 +18,7 @@ Ce projet simplifie l'automatisation du déploiement d'une application via un we
 
 1. Clonez le dépôt :
    ```bash
-   git clone https://github.com/valentinbrosseau/projet-auto-build-deploy.git
+   git clone https://github.com/c4software/Auto-Build-Deploy.git
    ```
 2. Configurez les variables d'environnement dans `docker-compose.yml` :
    - Modifiez `REPO_URL` pour pointer vers votre dépôt.
