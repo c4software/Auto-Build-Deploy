@@ -4,10 +4,10 @@ Ce projet simplifie l'automatisation du déploiement d'une application via un we
 
 ## Fonctionnalités
 
-- Déclenchement automatisé des déploiements via webhook
+- Déclenchement automatisé des déploiements via un webhook
 - Mise à jour automatique du dépôt
 - Construction d'images Docker à la demande
-- Redéploiement sans interruption (presque instantané)
+- Redéploiement sans interruption (presque instantané, la nouvelle image est renommée au dernier moment)
 
 ## Prérequis
 
@@ -35,11 +35,36 @@ Pour déclencher le déploiement, effectuez une requête POST vers :
 ```
 http://localhost:8888/<RANDOM_PATH_FOR_WEBHOOK>
 ```
-(Remplacez `<RANDOM_PATH_FOR_WEBHOOK>` par la valeur configurée.)
+(Remplacez `<RANDOM_PATH_FOR_WEBHOOK>` par la valeur définie.)
+
+## Fonctionnement
+
+Le déploiement consiste à récupérer le dépôt, construire une image Docker, puis redéployer l'application.  
+Exemple de Dockerfile :
+
+```Dockerfile
+# Build stage
+FROM oven/bun:latest AS build
+WORKDIR /app
+COPY package*.json ./
+RUN bun install
+COPY . .
+RUN apt update && apt install -y git
+RUN bun run docs:build
+
+# Production stage
+FROM nginx:alpine
+COPY --from=build /app/.vitepress/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
 
 ## Logs & Déploiement
 
-Les logs s'affichent en temps réel dans la console du conteneur, permettant un suivi précis des déploiements.
+Les journaux du déploiement sont accessibles via la commande :
+```bash
+docker-compose logs
+```
 
 ## Contribuer
 
