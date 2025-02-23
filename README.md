@@ -1,6 +1,8 @@
 # Auto Build Deploy
 
-This project simplifies the automation of deploying an application via a webhook.
+This project simplifies the automation of deploying an application via a webhook. The prupose is to automate the redeployment of a web application when a new commit is pushed to the repository.
+
+The server listens for a POST request on a specified path. When the request is received, the server pulls the repository, builds a Docker image, and restarts the application to serve the new image for clients.
 
 ## Features
 
